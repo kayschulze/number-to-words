@@ -12,6 +12,7 @@ namespace NumbersToWords.Models
 
     public void BuildDictionary()
     {
+      translationGuide.Add(0, "zero");
       translationGuide.Add(1, "one");
       translationGuide.Add(2, "two");
       translationGuide.Add(3, "three");
@@ -22,6 +23,18 @@ namespace NumbersToWords.Models
       translationGuide.Add(8, "eight");
       translationGuide.Add(9, "nine");
       translationGuide.Add(10, "ten");
+
+      //11-20
+      translationGuide.Add(11, "eleven");
+      translationGuide.Add(12, "twelve");
+      translationGuide.Add(13, "thirteen");
+      translationGuide.Add(14, "fourteen");
+      translationGuide.Add(15, "fifteen");
+      translationGuide.Add(16, "sixteen");
+      translationGuide.Add(17, "seventeen");
+      translationGuide.Add(18, "eighteen");
+      translationGuide.Add(19, "nineteen");
+      translationGuide.Add(20, "twenty");
     }
 
     public NumberTranslator(int inputNumber)
