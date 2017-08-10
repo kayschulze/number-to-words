@@ -23,11 +23,25 @@ namespace NumbersToWords.Tests
     }
 
     [TestMethod]
-    public void TranslateNumber_TranslatesElevenToTwenty_True()
+    public void TranslateNumber_TranslatesElevenToNineteen_True()
     {
       //Arrange
       NumberTranslator testNumber = new NumberTranslator(15);
       string expected = "fifteen";
+
+      //Act
+      string actual = testNumber.TranslateNumber();
+
+      //Assert
+      Assert.AreEqual(expected, actual);
+    }
+
+    [TestMethod]
+    public void TranslateNumber_TranslatesTwentyOneToNinetyNine_True()
+    {
+      //Arrange
+      NumberTranslator testNumber = new NumberTranslator(33);
+      string expected = "thirty-three";
 
       //Act
       string actual = testNumber.TranslateNumber();

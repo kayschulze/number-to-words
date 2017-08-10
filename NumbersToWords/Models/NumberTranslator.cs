@@ -10,6 +10,8 @@ namespace NumbersToWords.Models
 
     private Dictionary<int, string> translationGuide = new Dictionary<int, string> {};
 
+    private Dictionary<int, string> translationGuideTenBase = new Dictionary<int, string> {};
+
     public void BuildDictionary()
     {
       translationGuide.Add(0, "zero");
@@ -34,7 +36,17 @@ namespace NumbersToWords.Models
       translationGuide.Add(17, "seventeen");
       translationGuide.Add(18, "eighteen");
       translationGuide.Add(19, "nineteen");
-      translationGuide.Add(20, "twenty");
+
+      //Ten base
+      translationGuideTenBase.Add(2,"twenty");
+      translationGuideTenBase.Add(3,"thirty");
+      translationGuideTenBase.Add(4,"fourty");
+      translationGuideTenBase.Add(5,"fifty");
+      translationGuideTenBase.Add(6,"sixty");
+      translationGuideTenBase.Add(7,"seventy");
+      translationGuideTenBase.Add(8,"eighty");
+      translationGuideTenBase.Add(9,"ninety");
+
     }
 
     public NumberTranslator(int inputNumber)
@@ -46,6 +58,30 @@ namespace NumbersToWords.Models
 
     public string TranslateNumber()
     {
+      if (_inputNumber <= 19)
+      {
+        _returnWord = translationGuide[_inputNumber];
+      }
+
+      if (_inputNumber >= 20 && _inputNumber <= 99)
+      {
+        string inputNumberString = _inputNumber.ToString(); //convert user's int to string
+
+        //grab the 0th index of the number string and translate it through the BaseTen Dictionary
+        string tenBase = translationGuideTenBase[int.Parse(inputNumberString[0].ToString())];
+
+        //if it doesnt end in 0, then add on a - and parse the 1st index of the number string through the base0 dictionary to get appropriate word
+        if (inputNumberString[1]!='0')
+        {
+          tenBase +="-";
+          tenBase += translationGuide[int.Parse(inputNumberString[1].ToString())];
+        }
+
+        _returnWord = tenBase;
+        return _returnWord;
+
+      }
+
       _returnWord = translationGuide[_inputNumber];
 
       return _returnWord;
