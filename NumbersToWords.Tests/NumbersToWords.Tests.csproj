@@ -10,6 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Scrabble\Scrabble.csproj" />
+    <ProjectReference Include="..\NumbersToWords\NumbersToWords.csproj" />
   </ItemGroup>
 </Project>

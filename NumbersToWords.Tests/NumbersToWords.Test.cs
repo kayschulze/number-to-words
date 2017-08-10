@@ -1,47 +1,26 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Scrabble.Models;
+using NumbersToWords.Models;
 using System.Collections.Generic;
 using System;
 
-namespace Scrabble.Tests
+namespace NumbersToWords.Tests
 {
   [TestClass]
-  public class ScrabbleTests
+  public class NumbersToWordsTest
   {
     [TestMethod]
-    public void GetLetterScore_GetAppropriateScoreOfOneScore_True()
+    public void TranslateNumber_TranslatesZeroToNine_True()
     {
       //Arrange
-      ScrabbleGame testScrabble = new ScrabbleGame('A');
-      int expected = 1;
+      NumberTranslator testNumber = new NumberTranslator(7);
+      string expected = "seven";
+
       //Act
-      int actual = testScrabble.GetLetterScore();
+      string actual = testNumber.TranslateNumber();
+
       //Assert
       Assert.AreEqual(expected, actual);
     }
 
-    [TestMethod]
-    public void GetLetterScore_GetAppropriateScoreOfAnyLetter_True()
-    {
-      //Arrange
-      ScrabbleGame testScrabble = new ScrabbleGame('K');
-      int expected = 5;
-      //Act
-      int actual = testScrabble.GetLetterScore();
-      //Assert
-      Assert.AreEqual(expected, actual);
-    }
-
-    [TestMethod]
-    public void GetWordScore_GetTotalWordScore_True()
-    {
-      //Arrange
-      ScrabbleGame testScrabble = new ScrabbleGame("jonathan");
-      int expected = 18;
-      //Act
-      int actual = testScrabble.GetWordScore();
-      //Assert
-      Assert.AreEqual(expected, actual);
-    }
   }
 }
