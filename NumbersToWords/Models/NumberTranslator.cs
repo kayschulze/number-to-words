@@ -56,11 +56,13 @@ namespace NumbersToWords.Models
       BuildDictionary();
     }
 
-    public string TranslateNumber()
+    public string TranslateToNintyNine()
     {
+      string tenBase = "";
+
       if (_inputNumber <= 19)
       {
-        _returnWord = translationGuide[_inputNumber];
+        tenBase = translationGuide[_inputNumber];
       }
 
       if (_inputNumber >= 20 && _inputNumber <= 99)
@@ -68,7 +70,7 @@ namespace NumbersToWords.Models
         string inputNumberString = _inputNumber.ToString(); //convert user's int to string
 
         //grab the 0th index of the number string and translate it through the BaseTen Dictionary
-        string tenBase = translationGuideTenBase[int.Parse(inputNumberString[0].ToString())];
+        tenBase = translationGuideTenBase[int.Parse(inputNumberString[0].ToString())];
 
         //if it doesnt end in 0, then add on a - and parse the 1st index of the number string through the base0 dictionary to get appropriate word
         if (inputNumberString[1]!='0')
@@ -77,16 +79,38 @@ namespace NumbersToWords.Models
           tenBase += translationGuide[int.Parse(inputNumberString[1].ToString())];
         }
 
-        _returnWord = tenBase;
-        return _returnWord;
+        return tenBase;
 
       }
 
-      _returnWord = translationGuide[_inputNumber];
+      return tenBase;
+    }
+
+    public string TranslateToNineNintyNine(int hundrethsDigit)
+    {
+      string hundrethsWord = translationGuide[hundrethsDigit];
+      hundrethsWord += " hundred ";
+
+      return hundrethsWord;
+    }
+
+    public string TranslateNumber()
+    {
+      int lengthOfNumber = _inputNumber.ToString().Length;
+      string inputNumberString = _inputNumber.ToString();
+
+      if (lengthOfNumber == 3)
+      {
+        _returnWord = TranslateToNineNintyNine(int.Parse(inputNumberString[0].ToString()));
+        _returnWord += TranslateToNintyNine();
+      }
+      else if (lengthOfNumber < 3)
+      {
+        _returnWord += TranslateToNintyNine();
+      }
 
       return _returnWord;
     }
-
 
   }
 }

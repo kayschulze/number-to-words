@@ -50,5 +50,19 @@ namespace NumbersToWords.Tests
       Assert.AreEqual(expected, actual);
     }
 
+    [TestMethod]
+    public void TranslateNumber_TranslatesAHundredToNineHundredNintyNinty_True()
+    {
+      //Arrange
+      NumberTranslator testNumber = new NumberTranslator(722);
+      string expected = "seven hundred twenty-two";
+
+      //Act
+      string actual = testNumber.TranslateNumber();
+
+      //Assert
+      Assert.AreEqual(expected, actual);
+    }
+
   }
 }
